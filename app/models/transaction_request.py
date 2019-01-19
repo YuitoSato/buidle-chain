@@ -1,3 +1,7 @@
+from app.models.errors.not_enough_balance_exception import NotEnoughBalanceException
+from app.models.errors.tx_output_already_spent_exception import TxOutputAlreadySpentException
+
+
 class TransactionRequest:
     def __init__(self, sender_address, recipient_address, amount, timestamp, tx_input_requests):
         self.sender_address = sender_address
@@ -12,7 +16,7 @@ class TransactionRequest:
     def assert_unspent_tx_output_ids(self, spent_tx_output_ids):
         for tx_output_id in self.get_requesting_tx_output_ids():
             if tx_output_id in spent_tx_output_ids:
-                raise Exception('error.requesting_transaction_output_already_spent')
+                raise TxOutputAlreadySpentException()
 
     def get_tx_inputs(self, unspent_tx_outputs):
         tx_inputs = list(map(
@@ -20,7 +24,7 @@ class TransactionRequest:
         ))
 
         if len(list(filter(None, tx_inputs))) == 0:
-            raise Exception('error.not_enough_input_amount')
+            raise NotEnoughBalanceException()
 
         return tx_inputs
 

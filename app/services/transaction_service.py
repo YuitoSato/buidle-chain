@@ -11,7 +11,7 @@ class TransactionService:
         spent_tx_output_ids_in_unconfirmed_tx_pool = UnconfirmedTxPool.list_spent_tx_output_ids()
         tx_request.assert_unspent_tx_output_ids(spent_tx_output_ids_in_unconfirmed_tx_pool)
 
-        unspent_tx_outputs_in_blockchain = Blockchain.list_unspent_tx_outputs_by_tx_output_ids(
+        unspent_tx_outputs_in_blockchain = Blockchain.fetch_unspent_tx_outputs_by_tx_output_ids(
             tx_request.get_requesting_tx_output_ids())
 
         # 今回使用しようとしているトランザクションインプットを算出
@@ -19,7 +19,7 @@ class TransactionService:
 
         TransactionInput.verify_tx_inputs(tx_inputs, tx_request.sender_address)
 
-        transaction = Transaction.build(
+        transaction = Transaction.build_with_tx_outputs(
             locktime = 0,
             timestamp = tx_request.timestamp,
             tx_inputs = tx_inputs,

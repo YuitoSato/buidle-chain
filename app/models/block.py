@@ -1,4 +1,6 @@
 import hashlib
+from functools import reduce
+from operator import add
 
 
 class Block:
@@ -26,3 +28,19 @@ class Block:
             nonce = nonce,
             transactions = transactions
         )
+
+    def get_total_tx_output_amount(self):
+        if len(self.transactions) == 0:
+            return 0
+
+        tx_outputs = reduce(add, list(map(lambda tx: tx.tx_outputs, self.transactions)))
+
+        if len(tx_outputs) == 0:
+            return 0
+
+        tx_output_amounts = list(map(lambda tx_o: tx_o.amount, tx_outputs))
+
+        return reduce(add, tx_output_amounts)
+
+    def get_tx_amount_to_miner(self):
+        return self.get_total_tx_output_amount() * 0.99

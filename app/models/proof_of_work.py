@@ -22,7 +22,7 @@ class ProofOfWork:
             hash_result = hashlib.sha256(str(self.header).encode('utf-8') + str(nonce).encode('utf-8')).hexdigest()
             proof_result = ProofResult(int(hash_result, 16), target, nonce)
 
-            if proof_result.isValid():
+            if proof_result.is_valid():
                 print("Success with nonce %d" % nonce)
                 return proof_result
 

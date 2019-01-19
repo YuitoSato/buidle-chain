@@ -6,3 +6,7 @@ class ProofResult:
 
     def is_valid(self):
         return self.result_hash_int < self.target_hash_int
+
+    def assert_valid(self):
+        if not self.is_valid():
+            raise Exception('error.proof_failure')

@@ -1,6 +1,9 @@
 import hashlib
 import uuid
+from functools import reduce
+from operator import add
 
+from app.models.errors.not_enough_balance_exception import NotEnoughBalanceException
 from app.models.transaction_input import TransactionInput
 from app.utils.constants import COINBASE_ADDRESS
 from Crypto.Cipher import PKCS1_OAEP
@@ -48,3 +51,23 @@ class TransactionOutput:
             encryptor = PKCS1_OAEP.new(public_key, SHA256)
             encrypted = encryptor.encrypt(transaction_output_id.encode('utf-8'))
             return encrypted.decode('latin-1')
+
+    @classmethod
+    def calc_total_amount(cls, tx_outputs):
+        if len(tx_outputs) == 0:
+            return 0
+
+        tx_output_amounts = list(map(lambda tx_o: tx_o.amount, tx_outputs))
+        return reduce(add, tx_output_amounts)
+
+    @classmethod
+    def fetch_tx_outputs_over_amount(cls, target_amount, tx_outputs):
+        result_tx_outputs = []
+        sum_amount = 0
+        for i in range(len(tx_outputs)):
+            result_tx_outputs.append(tx_outputs[i])
+            sum_amount += tx_outputs[i].amount
+            if sum_amount > target_amount:
+                return result_tx_outputs
+
+        raise NotEnoughBalanceException()

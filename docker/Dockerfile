@@ -14,3 +14,4 @@ ENV node_address=$node_address
 
 RUN chmod +x docker-entrypoint.sh
 ENTRYPOINT "docker/docker-entrypoint.sh" $node_number $node_address
+#ENTRYPOINT ["bash"]
