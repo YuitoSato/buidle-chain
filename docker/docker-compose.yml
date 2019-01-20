@@ -13,7 +13,6 @@ services:
       - node1:/usr/src/app/app/conf
     tty: true
     stdin_open: true
-
     ports:
       - "5001:5001"
     environment:

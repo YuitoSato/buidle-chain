@@ -14,7 +14,7 @@ class TestTransactionService(TestCase):
             'timestamp': 0,
             'tx_input_requests': [
                 {
-                    'transaction_output_id': '38927c5472ba46709f43a750e666ddb1f218fb6b8ec3227a931328e119f8d6a7',
+                    'transaction_output_id': '61a39972b11f90a1d707c466ca7ff3b85407fca04438943be865004ba0964c2b',
                     'unlocking_script': '35pLa2XoKqIz0agLgeDchHtBg4nYaqJnK6jvwgBoHJyHIgnEnCSo4oo74lJIi48on5CZJLEo0mGCikG7JD4e7J4XhloJNMH4AmvPX5rftdp3yAJH6MPgAQnDDI0zx8gvls88xYzfZYFnUbFscmyKGd5Ehh3SQgjRghnrrykFCybkiwON0jH2rVB1C2xTsyJoaA840ykkl1WsM8NdMQwb4ukBjUP+NLbL6Fw2AH7LQcG/tTpNYSR+VujZoy/bXsaFpmcCtqDcJjvhvzY2vpVBunrm9T9A2ae0RlvuNKK3qbd9I1mAzhwpvWBdMUPInangrK9FjinLB1qEJPvNhC4OXQ=='
                 }
             ],
