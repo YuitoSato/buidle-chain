@@ -3,10 +3,10 @@ from datetime import datetime
 import requests
 
 from app.models.block import Block
-from app.models.errors.duplicated_block_exception import DuplicatedBlockException
-from app.models.errors.invalid_received_block_exception import InvalidReceivedBlockException
-from app.models.errors.lose_mining_exception import LoseMiningException
-from app.models.errors.too_short_received_block_exception import TooShortReceivedBlockException
+from app.models.exceptions.duplicated_block_exception import DuplicatedBlockException
+from app.models.exceptions.invalid_received_block_exception import InvalidReceivedBlockException
+from app.models.exceptions.lose_mining_exception import LoseMiningException
+from app.models.exceptions.too_short_received_block_exception import TooShortReceivedBlockException
 from app.models.proof_of_work import ProofOfWork
 from app.models.transaction import Transaction
 from app.stores.blockchain import Blockchain

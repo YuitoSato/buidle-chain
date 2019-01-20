@@ -1,9 +1,9 @@
 from flask.json import jsonify
 
-from app.models.errors.duplicated_block_exception import DuplicatedBlockException
-from app.models.errors.invalid_received_block_exception import InvalidReceivedBlockException
-from app.models.errors.lose_mining_exception import LoseMiningException
-from app.models.errors.too_short_received_block_exception import TooShortReceivedBlockException
+from app.models.exceptions.duplicated_block_exception import DuplicatedBlockException
+from app.models.exceptions.invalid_received_block_exception import InvalidReceivedBlockException
+from app.models.exceptions.lose_mining_exception import LoseMiningException
+from app.models.exceptions.too_short_received_block_exception import TooShortReceivedBlockException
 from app.services.block_service import BlockService
 from app.services.broadcast_service import BroadcastService
 from app.stores.blockchain import Blockchain

@@ -1,6 +1,6 @@
 from flask.json import jsonify
 
-from app.models.errors.tx_output_already_spent_exception import TxOutputAlreadySpentException
+from app.models.exceptions.tx_output_already_spent_exception import TxOutputAlreadySpentException
 from app.services.broadcast_service import BroadcastService
 from app.services.transaction_service import TransactionService
 from app.stores.unconfirmed_tx_pool import UnconfirmedTxPool

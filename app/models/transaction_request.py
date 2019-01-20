@@ -1,5 +1,5 @@
-from app.models.errors.not_enough_balance_exception import NotEnoughBalanceException
-from app.models.errors.tx_output_already_spent_exception import TxOutputAlreadySpentException
+from app.models.exceptions.not_enough_balance_exception import NotEnoughBalanceException
+from app.models.exceptions.tx_output_already_spent_exception import TxOutputAlreadySpentException
 
 
 class TransactionRequest:

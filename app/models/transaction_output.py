@@ -3,7 +3,7 @@ import uuid
 from functools import reduce
 from operator import add
 
-from app.models.errors.not_enough_balance_exception import NotEnoughBalanceException
+from app.models.exceptions.not_enough_balance_exception import NotEnoughBalanceException
 from app.models.transaction_input import TransactionInput
 from app.utils.constants import COINBASE_ADDRESS
 from Crypto.Cipher import PKCS1_OAEP
