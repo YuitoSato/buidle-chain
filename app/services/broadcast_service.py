@@ -27,5 +27,7 @@ class BroadcastService:
             'tx_to_miner': tx_to_miner
         }
 
+        print('send block', block.block_id)
+
         for node in nodes:
             requests.post(node.url + '/blocks/receive', data = json.dumps(payload, cls = BuidleChainEncoder), headers = cls.HEADERS)

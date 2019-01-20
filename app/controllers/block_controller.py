@@ -1,6 +1,7 @@
 from flask.json import jsonify
 
 from app.models.errors.duplicated_block_exception import DuplicatedBlockException
+from app.models.errors.lose_mining_exception import LoseMiningException
 from app.services.block_service import BlockService
 from app.services.broadcast_service import BroadcastService
 from app.stores.blockchain import Blockchain
@@ -10,7 +11,11 @@ from app.utils.buidle_chain_decoder import decode_block_receive_request
 class BlockController:
     @classmethod
     def mine(cls, node_url, miner_address):
-        block, proof_result, tx_to_miner = BlockService.mine(miner_address)
+        try:
+            block, proof_result, tx_to_miner = BlockService.mine(miner_address)
+        except LoseMiningException as e:
+            return jsonify(e.code), 304
+
         BroadcastService.broadcast_block(block, proof_result, node_url, tx_to_miner)
         return jsonify({}), 201
 
@@ -27,7 +32,11 @@ class BlockController:
         except DuplicatedBlockException as e:
             return jsonify(e.code), 304
 
-        BlockService.receive_block(block, proof_result, sender_node_url, tx_to_miner)
+        try:
+            BlockService.receive_block(block, proof_result, sender_node_url, tx_to_miner)
+        except Exception as e:
+            return jsonify(e), 400
+
         BroadcastService.broadcast_block(block, proof_result, sender_node_url, tx_to_miner)
         return jsonify({}), 201
 

@@ -14,7 +14,7 @@ class Blockchain:
             previous_block_hash = "1",
             timestamp = 0,
             merkle_root = "",
-            difficulty_target = 25,
+            difficulty_target = 20,
             nonce = 0,
             transactions = [
                 Transaction.build(
