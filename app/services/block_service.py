@@ -4,7 +4,9 @@ import requests
 
 from app.models.block import Block
 from app.models.errors.duplicated_block_exception import DuplicatedBlockException
+from app.models.errors.invalid_received_block_exception import InvalidReceivedBlockException
 from app.models.errors.lose_mining_exception import LoseMiningException
+from app.models.errors.too_short_received_block_exception import TooShortReceivedBlockException
 from app.models.proof_of_work import ProofOfWork
 from app.models.transaction import Transaction
 from app.stores.blockchain import Blockchain
@@ -58,6 +60,7 @@ class BlockService:
 
         Blockchain.create_block(block)
         print('block created', block.block_id)
+        print('current block number', block.block_number)
 
         return block, proof_result
 
@@ -78,12 +81,15 @@ class BlockService:
         last_block = Blockchain.fetch_last_block()
 
         if not proof_result.is_valid():
-            raise Exception('received block is invalid')
+            raise InvalidReceivedBlockException()
 
         if last_block.block_id != block.previous_block_hash:
             if last_block.block_number < block.block_number:
                 print('resolving conflicting...')
                 cls._resolve_conflicts(sender_node_url)
+            else:
+                print('win conflict')
+                raise TooShortReceivedBlockException()
 
         if last_block.block_id == block.previous_block_hash:
             Blockchain.create_block(block)
