@@ -8,14 +8,13 @@ from app.utils.constants import COINBASE_ADDRESS
 
 
 class Transaction:
-    def __init__(self, transaction_id, locktime, tx_outputs, tx_inputs):
+    def __init__(self, transaction_id, tx_outputs, tx_inputs):
         self.transaction_id = transaction_id
-        self.locktime = locktime
         self.tx_outputs = tx_outputs
         self.tx_inputs = tx_inputs
 
     @classmethod
-    def build(cls, locktime, timestamp, tx_inputs, tx_outputs):
+    def build(cls, timestamp, tx_inputs, tx_outputs):
         if len(tx_inputs) == 0:
             tx_inputs_hash = ''
         else:
@@ -26,22 +25,20 @@ class Transaction:
         else:
             tx_outputs_hash = reduce(add, list(map(lambda tx_o: tx_o.transaction_output_id, tx_outputs)))
 
-        transaction_id = hashlib.sha256((
-            str(locktime) + str(timestamp)
+        transaction_id = hashlib.sha256((str(timestamp)
             + tx_outputs_hash
             + tx_inputs_hash
         ).encode('utf-8')).hexdigest()
 
         return Transaction(
             transaction_id = transaction_id,
-            locktime = locktime,
             tx_outputs = tx_outputs,
             tx_inputs = tx_inputs
         )
 
 
     @classmethod
-    def build_with_tx_outputs(cls, locktime, timestamp, tx_inputs, request_amount, sender_address, recipient_address):
+    def build_with_tx_outputs(cls, timestamp, tx_inputs, request_amount, sender_address, recipient_address):
         tx_inputs_amount_sum = TransactionInput.calc_total_amount(tx_inputs)
 
         if request_amount > tx_inputs_amount_sum:
@@ -76,10 +73,10 @@ class Transaction:
             to_recipient_output
         ]
 
-        return cls.build(locktime, timestamp, tx_inputs, tx_outputs)
+        return cls.build(timestamp, tx_inputs, tx_outputs)
 
     @classmethod
-    def build_for_miner(cls, locktime, timestamp, amount, miner_address):
+    def build_for_miner(cls, timestamp, amount, miner_address):
         tx_output = TransactionOutput.build(
             amount = amount,
             sender_address = COINBASE_ADDRESS,
@@ -87,8 +84,7 @@ class Transaction:
             timestamp = timestamp
         )
         return Transaction(
-            transaction_id = hashlib.sha256((str(locktime) + str(timestamp)).encode('utf-8')).hexdigest(),
-            locktime = locktime,
+            transaction_id = hashlib.sha256(str(timestamp).encode('utf-8')).hexdigest(),
             tx_outputs = [tx_output],
             tx_inputs = []
         )

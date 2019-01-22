@@ -25,7 +25,6 @@ class BuidleChainEncoder(JSONEncoder):
         if isinstance(o, Transaction):
             return {
                 'transaction_id': o.transaction_id,
-                'locktime': o.locktime,
                 'tx_outputs': o.tx_outputs,
                 'tx_inputs': o.tx_inputs
             }

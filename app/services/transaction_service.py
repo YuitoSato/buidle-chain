@@ -20,7 +20,6 @@ class TransactionService:
         TransactionInput.verify_tx_inputs(tx_inputs, tx_request.sender_address)
 
         transaction = Transaction.build_with_tx_outputs(
-            locktime = 0,
             timestamp = tx_request.timestamp,
             tx_inputs = tx_inputs,
             request_amount = tx_request.amount,

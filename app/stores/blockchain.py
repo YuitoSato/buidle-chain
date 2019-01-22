@@ -18,7 +18,6 @@ class Blockchain:
             nonce = 0,
             transactions = [
                 Transaction.build(
-                    locktime = 0,
                     timestamp = 1,
                     tx_inputs = [],
                     tx_outputs = [
@@ -32,7 +31,6 @@ class Blockchain:
                     ]
                 ),
                 Transaction.build(
-                    locktime = 0,
                     timestamp = 1,
                     tx_inputs = [],
                     tx_outputs = [
@@ -46,7 +44,6 @@ class Blockchain:
                     ]
                 ),
                 Transaction.build(
-                    locktime = 0,
                     timestamp = 1,
                     tx_inputs = [],
                     tx_outputs = [

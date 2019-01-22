@@ -27,7 +27,6 @@ def decode_tx_input_request(dictionary):
 def decode_transaction(dictionary):
     return Transaction(
         transaction_id = dictionary['transaction_id'],
-        locktime = dictionary['locktime'],
         tx_inputs = list(map(lambda tx_i: decode_tx_input(tx_i), dictionary['tx_inputs'])),
         tx_outputs = list(map(lambda tx_o: decode_tx_output(tx_o), dictionary['tx_outputs']))
     )

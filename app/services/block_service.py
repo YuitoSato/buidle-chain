@@ -68,7 +68,6 @@ class BlockService:
     def _create_tx_to_miner(cls, block, miner_address):
         tx_amount_to_miner = block.get_tx_amount_to_miner()
         transaction = Transaction.build_for_miner(
-            locktime = 0,
             timestamp = datetime.now().timestamp(),
             amount = tx_amount_to_miner,
             miner_address = miner_address

@@ -24,7 +24,6 @@ class TestTransactionService(TestCase):
             'sender_node_url': 'test',
             'tx_to_miner': {
                 'transaction_id': 'test_tx_id',
-                'locktime': 0,
                 'tx_outputs': [],
                 'tx_inputs': []
             }
@@ -33,7 +32,7 @@ class TestTransactionService(TestCase):
         r = {
             'sender_node_url': 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAznjoHvzCJtQcIYd3yj7vgwaPlyiG6U/Qlw1G89n0bNt5anvRe+e2eKzvpy98aj6ShGu7hARE9SxAFA9bIHCBqdAyPnrUaw7qGkeZNPHBByHe9prJSn0ZwBtfySOSbzdetO5aAwvLj5qMudW2PDz15mP2taGOvXqNnbcH78ZHQLvF6G+SbwuLHU5LEDSZlcy+CnvPqD67cg+QmJLneVmQfOBtbFHz3yDQghNrHWa+UCspUMHVGsDG6OEK7MSpPieY6TzBEYQWsikosQ+V0zBNrSCADe3GBcJ7XzafM/gb+gzJ1eP78F1sA6Ja4ZtqInqN406PwerAXaUJa2twW6529wIDAQAB',
             'block': { 'block_id': 'afb0d261079e9c96fe49f600748e3681bb17331f74cec08334884337e12e304a', 'transactions': [
-                { 'locktime': 0, 'tx_outputs': [{ 'amount': 99.0,
+                { 'tx_outputs': [{ 'amount': 99.0,
                     'transaction_output_id': '9b591161021fd1a857b70f63528b21ea8216b618fd4117289b5af6a8cfde3453',
                     'locking_script': '\r\x1cg\x88F¶UÏ»\x13\x9ev:;$úNR?a¶\x83#}\x17\x88»ÞI\x05kÏòiF@I»¬åJË\x8e¬\x1c\x9cÈò«\x80ìQ±@Aæµ%"\x10¿\x0btÑNfU\x1awýXðÀÃ5âÕ\'óÐ\\9\x8f¢Ù\xadsJ\x98î\x90ô\x10¹Z²OmÿS\x10ôÆúÐH¬\x98¶re\x84ZíËJ\x0bÛ³h_²ÏÛæÖ\x88\x9bZjsu\x12éV&=\x1ed²\\²Û¥ù,Íî¬!r³|\x10\x9e\tüSo¶=ºô5]\x9cQz\x06µZ*=|Ã\x85÷&JÅôÈ\x1a%Ùî)\x17.z\x85Pd\x14ÿyÂ#\r\x1exáé\x1eç\x0bG\x0b\x0c\x88\x03w\x9e-d³¤ \x82-¢\x1f+C2é¡Ü\x12ø«\x8fêd\x18ý¶\x15\x00NcüPµÓ\x8az¸\x98Ë>NÙ¡\x1e^',
                     'recipient_address': 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxnrb17FTtrgfg33ADcbcb2D7mGX+sBIn6jE24ADNKbAvqRuhonnBJxG5W21xMyfP43P4JS8Kb/e6MsdS0D5cwnvRmsgYZdCL9CvzMJ7gYGpaQ174S3ocdTveYVaMnnZExh8OCvfdGFs5O+wdBJF11jhUmKaNAS45LWjYjou3db5oJdd87ISEHOmyB1UOp4bSIvF0EI5zHMS/kXE53t2W95PdsiXStj0HpzBp0C3jwzVLGDuyvALeC6ACg+9R6exBut8mjoDgL47m3/irFy0E2XEhmmRlpxH/hvFkGVvjMIEXBwdc+p1FDNQtGXEUkCWaBiQxNE+TE02qXlsQi6S+IwIDAQAB',
@@ -60,7 +59,7 @@ class TestTransactionService(TestCase):
             'proof_result': { 'nonce': 995617,
                 'result_hash_int': 57625841494000262633660371648045959368632072447096640707399335526420641,
                 'target_hash_int': 110427941548649020598956093796432407239217743554726184882600387580788736 },
-            'tx_to_miner': { 'locktime': 0, 'tx_outputs': [{ 'amount': 9900000.0,
+            'tx_to_miner': { 'tx_outputs': [{ 'amount': 9900000.0,
                 'transaction_output_id': '27496edc11383b2b3cacf20c3f49dcba241cf1ab2210b9073b84444a763dd1bf',
                 'locking_script': "~÷p½ç\x90¸9ÿ`7¼ßV]¼N1\x1c×MÌ\x86ÔÎ»ºHi\x02ý!\x89\x1f_\x8evn\x94B«zò7+Õ@\x9dq\x1f9\x13¯6\tÈ×yÙwÁÝÙý\x13ne*Q\x0fô\x91ÏE8^ÏO®Tá×Üë\x1aN®\n\x0f\x97±\x87\x10BCrO8D°\x03\x90\x03N,Z\x9a\\Cm\x8fh\x1c4Ñu³\x931\x19)\x18u\x9e¶iç\x9ba\x9a\x1aü\x9eÅ3Åü¹7fû³¯p?øô\x0e çJ\x1b`tP\tn{\x13\x1aðn\x86F\x89ê¾!D¬Òù\x0cá·\x14t\x92?xí,\x82PJ'¯n>%/\x07t3!\x194á©2\x86ª\x07\x8bgWÌ\x86ÚÐx²%ÂºRsJ7«®\x1cæÔ´_Æ·ªx\x17¦¿\x99Ë.Ð×Ûy\x90F\nü\x8eØÔ\x9b\x8cü\x96\x85êJôQ",
                 'recipient_address': 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAznjoHvzCJtQcIYd3yj7vgwaPlyiG6U/Qlw1G89n0bNt5anvRe+e2eKzvpy98aj6ShGu7hARE9SxAFA9bIHCBqdAyPnrUaw7qGkeZNPHBByHe9prJSn0ZwBtfySOSbzdetO5aAwvLj5qMudW2PDz15mP2taGOvXqNnbcH78ZHQLvF6G+SbwuLHU5LEDSZlcy+CnvPqD67cg+QmJLneVmQfOBtbFHz3yDQghNrHWa+UCspUMHVGsDG6OEK7MSpPieY6TzBEYQWsikosQ+V0zBNrSCADe3GBcJ7XzafM/gb+gzJ1eP78F1sA6Ja4ZtqInqN406PwerAXaUJa2twW6529wIDAQAB',
